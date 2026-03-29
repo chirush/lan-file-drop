@@ -114,7 +114,13 @@ app.get('/api/download/:id', (req, res) => {
   if (!file) return res.status(404).json({ error: 'File not found' });
   const filePath = path.join(UPLOAD_DIR, file.id);
   if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'File missing' });
-  res.download(filePath, file.originalName);
+  const stat = fs.statSync(filePath);
+  res.set({
+    'Content-Disposition': `attachment; filename="${encodeURIComponent(file.originalName)}"`,
+    'Content-Length': stat.size,
+    'Content-Type': 'application/octet-stream'
+  });
+  fs.createReadStream(filePath).pipe(res);
 });
 
 app.get('/api/view/:id', (req, res) => {
@@ -122,7 +128,21 @@ app.get('/api/view/:id', (req, res) => {
   if (!file) return res.status(404).json({ error: 'File not found' });
   const filePath = path.join(UPLOAD_DIR, file.id);
   if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'File missing' });
-  res.sendFile(filePath);
+  const stat = fs.statSync(filePath);
+  const mime = require('path').extname(file.originalName).toLowerCase();
+  const mimeTypes = {
+    '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.gif': 'image/gif',
+    '.webp': 'image/webp', '.svg': 'image/svg+xml', '.bmp': 'image/bmp',
+    '.mp4': 'video/mp4', '.webm': 'video/webm', '.mov': 'video/quicktime',
+    '.mp3': 'audio/mpeg', '.wav': 'audio/wav', '.ogg': 'audio/ogg', '.flac': 'audio/flac',
+    '.pdf': 'application/pdf'
+  };
+  res.set({
+    'Content-Length': stat.size,
+    'Content-Type': mimeTypes[mime] || 'application/octet-stream',
+    'Accept-Ranges': 'bytes'
+  });
+  fs.createReadStream(filePath).pipe(res);
 });
 
 app.delete('/api/files/:id', (req, res) => {
