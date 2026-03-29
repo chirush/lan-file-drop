@@ -1117,10 +1117,9 @@ body,
 .preview-modal {
   display: flex;
   flex-direction: column;
-  width: 94vw;
-  max-width: 1200px;
-  height: 90vh;
-  max-height: 90vh;
+  width: auto;
+  max-width: 92vw;
+  max-height: 92vh;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--bg-primary);
@@ -1204,39 +1203,39 @@ body,
 }
 
 .preview-content {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
   overflow: auto;
-  min-height: 0;
 }
 
 .preview-content img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 85vw;
+  max-height: 78vh;
   object-fit: contain;
   border-radius: var(--radius-sm);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  display: block;
 }
 
 .preview-content video {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 85vw;
+  max-height: 78vh;
   border-radius: var(--radius-sm);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   outline: none;
+  display: block;
 }
 
 .preview-content audio {
-  width: 100%;
-  max-width: 500px;
+  width: 400px;
+  max-width: 80vw;
 }
 
 .preview-content iframe {
-  width: 100%;
-  height: 100%;
+  width: 80vw;
+  height: 80vh;
   border: none;
   border-radius: var(--radius-sm);
   background: #fff;
@@ -1267,19 +1266,30 @@ body,
 
 @media (max-width: 768px) {
   .preview-modal {
-    width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
-    border-radius: 0;
+    width: auto;
+    max-width: 96vw;
+    max-height: 94vh;
+    border-radius: var(--radius-md);
   }
 
   .preview-filename {
-    max-width: 200px;
-    font-size: 0.82rem;
+    max-width: 180px;
+    font-size: 0.8rem;
   }
 
   .preview-content {
-    padding: 12px;
+    padding: 10px;
+  }
+
+  .preview-content img,
+  .preview-content video {
+    max-width: 90vw;
+    max-height: 70vh;
+  }
+
+  .preview-content iframe {
+    width: 90vw;
+    height: 70vh;
   }
 }
 
