@@ -7,8 +7,8 @@
   <title>LAN File Drop — Local Network File Sharing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=shadcn-1">
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 </head>
 <body>
@@ -19,16 +19,14 @@
   <header class="header" id="appHeader">
     <div class="header-left">
       <div class="logo">
-        <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
-          <defs>
-            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#6C63FF"/>
-              <stop offset="100%" stop-color="#00D2FF"/>
-            </linearGradient>
-          </defs>
-          <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
-          <path d="M20 14L12 24H17V30L28 20H23V14H20Z" fill="url(#logoGrad)"/>
-        </svg>
+        <div class="logo-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+          </svg>
+        </div>
         <h1>LAN File Drop</h1>
       </div>
       <span class="badge" id="deviceCount">
@@ -83,17 +81,10 @@
       <div class="drop-zone" id="dropZone">
         <div class="drop-zone-content">
           <div class="upload-icon-wrapper">
-            <svg class="upload-icon" viewBox="0 0 64 64" fill="none">
-              <defs>
-                <linearGradient id="uploadGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#6C63FF"/>
-                  <stop offset="50%" stop-color="#00D2FF"/>
-                  <stop offset="100%" stop-color="#7F5AF0"/>
-                </linearGradient>
-              </defs>
-              <path d="M32 6L32 42" stroke="url(#uploadGrad)" stroke-width="3" stroke-linecap="round" class="upload-arrow"/>
-              <path d="M20 18L32 6L44 18" stroke="url(#uploadGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M8 40V52C8 54.2091 9.79086 56 12 56H52C54.2091 56 56 54.2091 56 52V40" stroke="url(#uploadGrad)" stroke-width="3" stroke-linecap="round"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
             </svg>
           </div>
           <h2 class="drop-title">Drop files here</h2>
@@ -101,9 +92,10 @@
           <p class="drop-hint">Supports all file types · No size limit</p>
         </div>
         <div class="drop-zone-active-overlay" id="dropOverlay">
-          <svg viewBox="0 0 80 80" fill="none">
-            <circle cx="40" cy="40" r="36" stroke="url(#uploadGrad)" stroke-width="2" stroke-dasharray="6 4"/>
-            <path d="M40 24V56M28 36L40 24L52 36" stroke="url(#uploadGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="36" height="36">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
           </svg>
           <span>Release to upload</span>
         </div>
@@ -141,14 +133,13 @@
         <!-- File cards injected here -->
       </div>
       <div class="empty-state" id="emptyState">
-        <svg viewBox="0 0 120 120" fill="none" class="empty-icon">
-          <circle cx="60" cy="60" r="50" stroke="#2a2a3e" stroke-width="2" stroke-dasharray="8 4"/>
-          <path d="M45 55H75M45 65H65" stroke="#3a3a5e" stroke-width="2" stroke-linecap="round"/>
-          <rect x="38" y="40" width="44" height="45" rx="4" stroke="#3a3a5e" stroke-width="2" fill="none"/>
-          <path d="M50 40V35C50 33.3431 51.3431 32 53 32H67C68.6569 32 70 33.3431 70 35V40" stroke="#3a3a5e" stroke-width="2"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="empty-icon" width="48" height="48">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          <line x1="12" y1="11" x2="12" y2="17"></line>
+          <line x1="9" y1="14" x2="15" y2="14"></line>
         </svg>
         <p>No files shared yet</p>
-        <span>Drop files above to start sharing</span>
+        <span>Drop files above or browse to start sharing</span>
       </div>
     </section>
   </main>
